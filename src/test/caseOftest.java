@@ -1,10 +1,12 @@
-package SWHW;
+package test;
 import static org.junit.Assert.*;
-
 import org.junit.Test;
 
+import SWHW.SC;
+import SWHW.book;
 
-public class caseOfTest {
+
+public class caseOftest {
 
 	
 

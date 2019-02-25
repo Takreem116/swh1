@@ -1,30 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project default="test">
 <property name ="src.java.dir" location="./src/SWHW"/>
-<property name ="src.test.dir" location="./src/SWHW"/>
+<property name ="src.test.dir" location="./src/test"/>
 <property name ="result.dir" location="./target"/>
 <property name ="result.javaclasses.dir" location="${result.dir}/classes"/>
 <property name ="result.testclasses.dir" location="${result.dir}/testclasses"/>
 	
-
+<!-- comment Make jar or executable product -->
+<target name ="jar" depends ="compile">
+          <jar destfile="${result.jar.file}">
+                   <fileset dir ="${result.javaclasses.dir}">
+           </fileset>
+              </jar>
+        </target>
 
 <path id="NecessaryLibraries">
         <pathelement location="./library/junit-4.12.jar"/>
         <!--matcher-->
- <pathelement location="./library/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
+ <pathelement location="./library/hamcrest-core-1.3.jar"/>
         <!--<pathelement location="./UsedLibraries/jacocoant.jar"/>-->
     </path>
     
-       <target name="compile">
+      <target name="compile">
             <mkdir dir ="${result.javaclasses.dir}"/>
-            <javac srcdir="C:\Program Files\Java\jdk1.8.0_171\bin" destdir="${result.javaclasses.dir}" debug="true" includeantruntime="false">
+            <javac srcdir="${src.java.dir}" destdir="${result.javaclasses.dir}" debug="true" includeantruntime="false">
             </javac>
 </target>
         
     <target name="compile-testcases" depends="compile">
     
         <mkdir dir="${result.testclasses.dir}"/>
-        <javac srcdir="C:\Program Files\Java\jdk1.8.0_171\bin"  destdir="${result.testclasses.dir}" debug="true" includeantruntime="false">
+        <javac srcdir="${src.test.dir}"  destdir="${result.testclasses.dir}" debug="true" includeantruntime="false">
             <classpath>
                 
                 <path refid="NecessaryLibraries"/>
@@ -43,7 +49,7 @@
             <formatter type="brief" usefile="false"/>
             <batchtest >
                 <fileset dir="${result.testclasses.dir}" >
-                     <include name="**/*Test.class"/>
+                     <include name="**/*test.class"/>
                 </fileset>
             </batchtest>
             

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class SC {
        static ArrayList <book> li;
-      SC(){
+      public SC(){
 	 li = new ArrayList<book>();
 }
 	public static int count() {
